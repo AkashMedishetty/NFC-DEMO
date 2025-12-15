@@ -6,16 +6,17 @@ import { VerticalCutReveal } from './components/VerticalCutReveal'
 import { PDFViewer } from './components/PDFViewer'
 import pdfFile from './NFC-for-Conferences-The-Future-of-Seamless-Engagement-by-PurpleHat-Events (5).pdf'
 
-function App() {
+function AttendeeCard() {
   const [animationPhase, setAnimationPhase] = useState('loader')
   const [showPDF, setShowPDF] = useState(false)
 
   const attendee = {
-    name: 'Dr. PurpleHat Events',
-    phone: '9491335814',
-    organization: 'PurpleHat Events',
+    name: 'Vikram Pola',
+    phone: '9014666161',
+    organization: 'Alpcord Network',
+    designation: 'Event Organiser',
     country: 'India',
-    regId: 'CE2025-1847',
+    regId: 'CE2025-1848',
     dates: 'Dec 15–17, 2025',
     venue: 'Hitex',
     conference: 'MBSE 2025'
@@ -33,6 +34,7 @@ function App() {
 VERSION:3.0
 FN:${attendee.name}
 ORG:${attendee.organization}
+TITLE:${attendee.designation}
 TEL;TYPE=CELL:${attendee.phone}
 NOTE:Registration: ${attendee.regId} | ${attendee.conference}
 END:VCARD`
@@ -127,7 +129,7 @@ END:VCARD`
               {/* Registration Details + QR Code */}
               <div className="flex justify-between items-start gap-4">
                 <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4, delay: 0.8 }} className="space-y-0.5 flex-1 text-[10px] sm:text-xs">
-                  {[['Registration', attendee.regId], ['Organization', attendee.organization], ['Country', attendee.country], ['Dates', attendee.dates], ['Venue', attendee.venue]].map(([label, value]) => (
+                  {[['Registration', attendee.regId], ['Company', attendee.organization], ['Role', attendee.designation], ['Country', attendee.country], ['Dates', attendee.dates], ['Venue', attendee.venue]].map(([label, value]) => (
                     <div key={label} className="flex items-baseline gap-2 sm:gap-3">
                       <span className="text-white/50 uppercase tracking-wider min-w-[65px] sm:min-w-[80px]">{label}</span>
                       <span className="font-bold text-white">{value}</span>
@@ -166,4 +168,4 @@ END:VCARD`
   )
 }
 
-export default App
+export default AttendeeCard
